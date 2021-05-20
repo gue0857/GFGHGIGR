@@ -10,12 +10,14 @@
     <script src="HTTP2019.js"></script>
     <script>
 
-
+        var FHIRPtionID = localStorage.getItem("FHIRPtionID");
+        // alert(FHIRPtionID);
+        
         var myObj = {
             "resourceType": "QuestionnaireResponse",
             "status": "completed",
             "subject": {
-                "reference": "Person/59"
+                "reference": "Patient/" + FHIRPtionID
             },
             "authored": "2020-02-17T12:20:17.1151Z",
             "item": [{
@@ -640,15 +642,22 @@
 
 <body style="height: 780px">
 
-    FHIR patient id:
-    <input type="text" value="unknown" id="FHIRPtionID" /> <br />
-
-    <p>ADL 量表</p>
+   
+    <h1 align="center">研究問卷</h1>
+    <p>親愛的護理同仁，您好
+        為了解您目前所面臨的處境，作為未來我們辦理正念相關課程之參考。期望您能夠提供您寶貴的經驗，幫助工作之調適。
+        本計畫分五個部份，第一部分是了解你個人目前處境的狀況，第二部份是問卷調查及個人基本資料，問卷採不記名的方式，您所提供的資料僅供學術研究使用，不會對外公開，且對您個人的權益不會有任何影響，請您安心填答。
+        研究主持人 花蓮慈濟醫院護理部 王淑貞敬上
+    </p>
 
     <!-- <input id="btnClear" onclick="clearData()" type="button" value="clearData" /> -->
     <!-- <input id="btnGetdata" onclick="getData()" type="button" value="getData" /> -->
-    <input id="Button1" onclick="postData()" type="button" value="postData" /><br /> <br />
-    <p>正念五構面量表</p>
+  
+    <h2>第一部份問卷</h2>
+    <p>一，正念量表</p>
+    <p>請仔細閱讀後，依照您自己平日的實際情況圈選符合的數字</p>
+    <h4>一，正念五構面量表</h4>
+    <p>以下題目請根據以下的等級評分，將最符合您真實想法的程度，在空格內打勾。</p>
     <table width="100%" style="table-layout: fixed" border="1">
         <tr>
             <td>
@@ -1148,13 +1157,15 @@
         </tr>
 
     </table>
-    <p>專業生活品質量表</p>
-
-    <table id="tb1" style="table-layout: fixed" border="1">
+    <h4>二，專業生活品質量表</h4>
+    <p>以下題目請根據以下的等級評分，將最符合您的實際情況，圈選符合的數字。</p>
+    <p>當您﹝幫助﹞別人時，會直接接觸到他人的生活。您可能因此曾經經驗過正面及負面的影響。下列問題是有關您身為﹝助人者﹞時所經歷過的正面及負面經驗。請依據您自己及目前的工作狀況，來回答下列的問題。請誠實地填選出最符合您在過去一週中所經歷過的情況。
+    </p>
+    <table width="100%" style="table-layout: fixed" border="1">
         <tr>
             <td>編號</td>
             <td align="center">題目</td>
-            <td>從未<br>有過(1)</td>
+            <td>從未有過(1)</td>
             <td>很少(2)</td>
             <td>有些<br>時候(3)</td>
             <td>經常<br>如此(4)</td>
@@ -1887,7 +1898,8 @@
             </td>
         </tr>
     </table>
-    <p>自我慈悲指數測試 </p>
+    <h4>三，自我慈悲指數測試</h4>
+    <p>你對自己有多寬容？請仔細閱讀問題，然後選出最符合您的情況的選項。</p>
     <table width="100%" style="table-layout: fixed" border="1">
         <tr>
             <td>
@@ -2342,7 +2354,8 @@
             </td>
         </tr>
     </table>
-    <p>護理工作壓力源量表</p>
+    <h4>四，護理工作壓力源量表</h4>
+    <p>請根據您平常的工作經驗，圈選一個最能代表您同意程度的答案：</p>
     <table width="100%" style="table-layout: fixed" border="1">
         <tr>
             <td>
@@ -2954,44 +2967,17 @@
             </td>
         </tr>
     </table>
-    <p>睡眠困擾程度</p>
-    <table width="100%" style="table-layout: fixed" border="1">
-        <tr>
-            <td>
-                <div class="form-group">
-                    <label>21. 工作帶來的相關責任，使我必須改變家庭活動的安排 </label>
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="rd_pressure_21" id="rd_pressure_21_01" value="1"
-                                checked="checked" />(1) 很不同意
-                        </label>
-                    </div>
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="rd_pressure_21" id="rd_pressure_21_02" value="2" />(2) 不同意
-                        </label>
-                    </div>
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="rd_pressure_21" id="rd_pressure_21_03" value="3" />(3) 同意
-                        </label>
-                    </div>
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="rd_pressure_21" id="rd_pressure_21_04" value="4" />(4) 很同意
-                        </label>
-                    </div>
+    <h4>五，睡眠困擾程度</h4>
+    <p>以下問題僅針對您過去一個月以來，你如果每星期至少有三天的睡眠困擾，便可以加以估算。請回答所有的問題，將最符合您的實際情況，圈選符合的數字。</p>
 
-                </div>
-            </td>
-        </tr>
+    <table width="100%" style="table-layout: fixed" border="1">
         <tr>
             <td>
                 <div class="form-group">
                     <label name="qtext">1.入睡時間</label>
                     <div class="radio">
-                            <input type="radio" name="rd_sleep_1" id="rd_sleep_1_1" value="0" checked="checked" />
-                            0沒問題
+                        <input type="radio" name="rd_sleep_1" id="rd_sleep_1_1" value="0" checked="checked" />
+                        0沒問題
                         </label>
                     </div>
                     <div class="radio">
@@ -3209,11 +3195,7 @@
         </tr>
 
     </table>
+    <input id="Button1" onclick="postData()" type="button" value="postData" /><br />
 </body>
-<script>
-    document.getElementById("FHIRPtionID").value = getCookie("patientID");
-    document.getElementById("name").value = getCookie("patientName");
-
-</script>
 
 </html>
