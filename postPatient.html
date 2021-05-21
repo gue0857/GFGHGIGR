@@ -13,8 +13,8 @@
             "name": [
                 {
                     "text": "林小妹",
-                    "family": "",
-                    "given": [""]
+                    "family": "t",
+                    "given": ["test"]
                 }
             ],
             "gender": "",
@@ -29,27 +29,60 @@
             /*   var data = myObj.valueQuantity.value;
               alert(data);  */
             // alert("aaaa");
-            myObj.name[0].family = document.getElementById("familyName").value;
-            myObj.name[0].given[0] = document.getElementById("givenName").value;
-            myObj.name[0].text = myObj.name[0].family + myObj.name[0].given[0];
-            myObj.birthDate = document.getElementById("birthDate").value;
+            // myObj.name[0].family = document.getElementById("familyName").value;
+            // myObj.name[0].given[0] = document.getElementById("givenName").value;
+            // myObj.name[0].text = myObj.name[0].family + myObj.name[0].given[0];
+            var dataResult = checkData();
+
+            if (dataResult == 0) return;
+            // myObj.birthDate = document.getElementById("birthDate").value;
 
             if (document.getElementById("genderMale").checked == true) { myObj.gender = "male"; }
             else if (document.getElementById("genderFemale").checked == true) { myObj.gender = "female"; }
 
             var jsonStr = JSON.stringify(myObj);
-            // alert(jsonStr);
+            alert(jsonStr);
 
             var apiURL;
             apiURL = FHIRrootURL + '/' + "Patient";
             // alert(apiURL);
-            CB_HTTPPostData(apiURL, jsonStr, function(ret){
+            CB_HTTPPostData(apiURL, jsonStr, function (ret) {
                 ret = JSON.parse(ret);
                 var patient_id = ret.id;
                 alert(patient_id);
+                var checkID = checkPID(patient_id);
+                if (checkID == 0) return;
+
                 localStorage.setItem("FHIRPtionID", patient_id);
                 window.location = "postADLunlong.html";
+
             });
+        }
+
+        function checkData() {
+
+            var checkBirthday = document.getElementById("birthDate").value;
+            if (checkBirthday == '') {
+                alert("輸入錯誤!請確認~");
+
+                return 0;
+            }
+            else {
+                myObj.birthDate = checkBirthday;
+
+                return 1;
+            }
+
+        }
+
+        function checkPID(patient_id) {
+            if (patient_id == undefined) {
+                alert("輸入錯誤!請確認~");
+                return 0;
+
+            }
+            else
+                return 1;
         }
     </script>
 
@@ -57,17 +90,17 @@
 
 <body style="height: 780px">
 
-     
-      <br/>
-      姓: <input type="text" id="familyName" /> 名: <input type="text" id="givenName" />  <br/>
-      性別: 男<input type="radio" name="gender" id="genderMale"> 女<input type="radio" name="gender" id="genderFemale"> <br/>
-      Birth Day  name: <input type="text" id="birthDate" /> Eg. 1924-10-10 <br/><br/>
-      <input id="Button1" onclick="postData()"  type="button" value="下一步" /> <br/>
-      <label>
-        <input  type="radio" name="size" value="10">10吋
-        <input  type="radio" name="size" value="10">11吋
-        <input  type="radio" name="size" value="10">12吋
-      </label>
+
+    <br />
+    1. 出生年月日: <input type="text" id="birthDate" /> EX. 1992-07-02 <br />
+    <!-- 姓: <input type="text" id="familyName" /> 名: <input type="text" id="givenName" />  <br/> -->
+    2. 性別: <input type="radio" name="gender" id="genderMale">男 <input type="radio" name="gender" id="genderFemale">女
+    <br />
+
+
+    <br />
+    <input id="Button1" onclick="postData()" type="button" value="下一步" /> <br />
+
 
 </body>
 

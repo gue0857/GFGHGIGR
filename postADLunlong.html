@@ -21,6 +21,60 @@
             },
             "authored": "2020-02-17T12:20:17.1151Z",
             "item": [{
+                "linkId": "991",
+                "text": "marriage",
+                "answer": [{
+                    "valueInteger": 0
+                }]
+            },{
+                "linkId": "992",
+                "text": "religion",
+                "answer": [{
+                    "valueInteger": 0
+                }]
+            },{
+                "linkId": "993",
+                "text": "education",
+                "answer": [{
+                    "valueInteger": 0
+                }]
+            },{
+                "linkId": "994",
+                "text": "work",
+                "answer": [{
+                    "valueInteger": 0
+                }]
+            },{
+                "linkId": "995",
+                "text": "dep",
+                "answer": [{
+                    "valueInteger": 0
+                }]
+            },{
+                "linkId": "996",
+                "text": "teach",
+                "answer": [{
+                    "valueInteger": 0
+                }]
+            },{
+                "linkId": "997",
+                "text": "money",
+                "answer": [{
+                    "valueInteger": 0
+                }]
+            },{
+                "linkId": "998",
+                "text": "work3",
+                "answer": [{
+                    "valueInteger": 0
+                }]
+            },{
+                "linkId": "999",
+                "text": "study_1",
+                "answer": [{
+                    "valueInteger": 0
+                }]
+            },{
                 "linkId": "1",
                 "text": "編號1",
                 "answer": [{
@@ -579,6 +633,17 @@
                         }
                     }
                 }
+                if (Total_Obj[k].type == "text") {//counter 
+                    if (Total_Obj[k].checked) {
+                        Str = Total_Obj[k].value;
+                        if (Str != "") {
+                            //answer[count] = Str;//text;
+                            myObj.item[count].answer[0].valueInteger = Str;
+                            count++;
+                            //alert(Str);
+                        }
+                    }
+                }
             }
             var jsonStr = JSON.stringify(myObj);
             alert(jsonStr);
@@ -586,6 +651,7 @@
             var apiURL;
             apiURL = FHIRrootURL + "/QuestionnaireResponse";
             HTTPPostData(apiURL, jsonStr);
+            window.location = "index.html";
 
         }
 
@@ -642,7 +708,80 @@
 
 <body style="height: 780px">
 
-   
+    3. 婚姻狀況:
+    <input type="radio" name="marriage" id="marriage_1" value="1">1.單身
+    2.已婚, <input type="radio" name="marriage" id="marriage_2" value="2">
+    有小孩 <input type="radio" name="marriage" id="marriage_3" value="3">
+    無小孩
+    3.<input type="radio" name="marriage" id="marriage_4" value="4">離婚
+    4.<input type="radio" name="marriage" id="marriage_5" value="5">喪偶
+    5.<input type="radio" name="marriage" id="marriage_6" value="6">同居 <br />
+    4.宗教信仰：
+    <input type="radio" name="religion" id="religion_1" value="1">1.無
+    <input type="radio" name="religion" id="religion_2" value="2">2.道教
+    <input type="radio" name="religion" id="religion_3" value="3">3.佛教
+    <input type="radio" name="religion" id="religion_4" value="4">4.基督教
+    <input type="radio" name="religion" id="religion_5" value="5">5.天主教
+    <input type="radio" name="religion" id="religion_6" value="6">6.回教
+    <input type="radio" name="religion" id="religion_7" value="7">7.其他 <br />
+    5.最高學歷：
+    <input type="radio" name="education" id="education_1" value="1">1.專科
+    <input type="radio" name="education" id="education_2" value="2">2.二技
+    <input type="radio" name="education" id="education_3" value="3">3.四技
+    <input type="radio" name="education" id="education_4" value="4">4.大學
+    <input type="radio" name="education" id="education_5" value="5">5.碩士
+    <input type="radio" name="education" id="education_6" value="6">6.博士 <br />
+    6. 工作執業別:
+    <input type="radio" name="work" id="work_1" value="1">1.護理師
+    <input type="radio" name="work" id="work_2" value="2">2.藥劑師
+    <input type="radio" name="work" id="work_3" value="3">3.營養師
+    <input type="radio" name="work" id="work_4" value="4">4.醫檢師
+    <input type="radio" name="work" id="work_5" value="5">5.職能治療師
+    <input type="radio" name="work" id="work_6" value="6">6.物理治療師
+    <input type="radio" name="work" id="work_7" value="7">7.呼吸治療師
+    <input type="radio" name="work" id="work_8" value="8">8.血液透析師
+    <input type="radio" name="work" id="work_9" value="9">9.心理師
+    <input type="radio" name="work" id="work_10" value="10">10.醫師
+    <input type="radio" name="work" id="work_11" value="11">11.其他 <br />
+    <p>執業別有分科者請續答第7題，無分科者請續答第8題</p>
+    7.工作科別：
+    <input type="radio" name="dep" id="dep_1" value="1">1.外科
+    <input type="radio" name="dep" id="dep_2" value="2">2.內科
+    <input type="radio" name="dep" id="dep_3" value="3">3.兒科
+    <input type="radio" name="dep" id="dep_4" value="4">4.婦產科
+    <input type="radio" name="dep" id="dep_5" value="5">5.泌尿科
+    <input type="radio" name="dep" id="dep_6" value="6">6.骨科
+    <input type="radio" name="dep" id="dep_7" value="7">7.耳鼻喉科
+    <input type="radio" name="dep" id="dep_8" value="8">8.加護病房
+    <input type="radio" name="dep" id="dep_9" value="9">9.急診
+    <input type="radio" name="dep" id="dep_10" value="10">10.門診
+    <input type="radio" name="dep" id="dep_11" value="11">11.安寧
+    <input type="radio" name="dep" id="dep_12" value="12">12.其他 <br />
+    8. 工作年資：
+    <input type="text" id="total_year" />年，
+    民國<input type="text" id="start_year" />年
+    <input type="text" id="start_month" />月至慈濟醫院工作 <br />
+    9. 臨床教師:
+    <input type="radio" name="teach" id="teach_1" value="1">1. 否
+    <input type="radio" name="teach" id="teach_2" value="2">2.是，臨床教師年資：
+    <input type="text" id="teach_year" />年<br />
+    10經濟狀況：
+    <input type="radio" name="money" id="money_1" value="1">1.入不敷出
+    <input type="radio" name="money" id="money_2" value="2">2.收支平衡
+    <input type="radio" name="money" id="money_3" value="3">3.尚有結餘
+    <input type="radio" name="money" id="money_4" value="4">4. 其他<br />
+    11.工作必需輪三班：
+    <input type="radio" name="work3" id="work3_1" value="1">1.是，最近一週，大夜班天數
+    <input type="text" id="work3_big_day" />天，小夜班
+    <input type="text" id="work3_small_day" />天
+    <input type="radio" name="work3" id="work3_2" value="2">2.否<br />
+    12.有在職進修中：
+    1.是，
+    <input type="radio" name="study_1" id="study_1_1" value="1">二技
+    <input type="radio" name="study_1" id="study_1_2" value="2">碩士
+    <input type="radio" name="study_1" id="study_1_3" value="3">博士
+    <input type="radio" name="study_1" id="study_2" value="4">2.否<br />
+
     <h1 align="center">研究問卷</h1>
     <p>親愛的護理同仁，您好
         為了解您目前所面臨的處境，作為未來我們辦理正念相關課程之參考。期望您能夠提供您寶貴的經驗，幫助工作之調適。
@@ -3195,7 +3334,8 @@
         </tr>
 
     </table>
-    <input id="Button1" onclick="postData()" type="button" value="postData" /><br />
+    <br />
+    <input id="Button1" onclick="postData()" type="button" value="完成問卷" /><br /><br />
 </body>
 
 </html>
