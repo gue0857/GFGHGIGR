@@ -1,61 +1,62 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
-   
-	<script src="setting.js"></script>
+
+    <script src="setting.js"></script>
     <script src="HTTP2019.js"></script>
- <script>
-     var myObj = {
-        "resourceType": "Patient",
-        "name": [
-          {  "text": "林小妹",
-              "family": "",
-              "given": [""]
-          }
-         ],
-         "gender": "",
-         "birthDate": "1924-10-10",      
-         "managingOrganization": {
-             "reference": "Organization/1921071"
-         } 
-     };
-     
-	 
-   function postData() {
-     /*   var data = myObj.valueQuantity.value;
-       alert(data);  */
-      // alert("aaaa");
-       myObj.name[0].family = document.getElementById("familyName").value;
-       myObj.name[0].given[0] = document.getElementById("givenName").value;
-       myObj.name[0].text =  myObj.name[0].family + myObj.name[0].given[0];
-       myObj.birthDate = document.getElementById("birthDate").value;
-
-      if(document.getElementById("genderMale").checked == true)
-           {myObj.gender = "male";    }
-       else if(document.getElementById("genderFemale").checked == true)
-           {myObj.gender = "female";    }  
-
-       var jsonStr = JSON.stringify(myObj);
-       alert(jsonStr);
-
-       var apiURL;
-       apiURL = FHIRrootURL + '/' + "Patient";
-      // alert(apiURL);
-       HTTPPostData(apiURL, jsonStr);
-     
-	
-
-	}
+    <script>
+        var myObj = {
+            "resourceType": "Patient",
+            "name": [
+                {
+                    "text": "林小妹",
+                    "family": "",
+                    "given": [""]
+                }
+            ],
+            "gender": "",
+            "birthDate": "1924-10-10",
+            "managingOrganization": {
+                "reference": "Organization/hlm.tzuchi"
+            }
+        };
 
 
-</script>	
-	
+        function postData() {
+            /*   var data = myObj.valueQuantity.value;
+              alert(data);  */
+            // alert("aaaa");
+            myObj.name[0].family = document.getElementById("familyName").value;
+            myObj.name[0].given[0] = document.getElementById("givenName").value;
+            myObj.name[0].text = myObj.name[0].family + myObj.name[0].given[0];
+            myObj.birthDate = document.getElementById("birthDate").value;
+
+            if (document.getElementById("genderMale").checked == true) { myObj.gender = "male"; }
+            else if (document.getElementById("genderFemale").checked == true) { myObj.gender = "female"; }
+
+            var jsonStr = JSON.stringify(myObj);
+            // alert(jsonStr);
+
+            var apiURL;
+            apiURL = FHIRrootURL + '/' + "Patient";
+            // alert(apiURL);
+            CB_HTTPPostData(apiURL, jsonStr, function(ret){
+                ret = JSON.parse(ret);
+                var patient_id = ret.id;
+                alert(patient_id);
+                localStorage.setItem("FHIRPtionID", patient_id);
+                window.location = "postADLunlong.html";
+            });
+        }
+    </script>
+
 </head>
+
 <body style="height: 780px">
 
-   
      
       <br/>
       姓: <input type="text" id="familyName" /> 名: <input type="text" id="givenName" />  <br/>
@@ -67,7 +68,7 @@
         <input  type="radio" name="size" value="10">11吋
         <input  type="radio" name="size" value="10">12吋
       </label>
-      
+
 </body>
 
 </html>
