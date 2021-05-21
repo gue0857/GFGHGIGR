@@ -12,7 +12,7 @@
 
         var FHIRPtionID = localStorage.getItem("FHIRPtionID");
         // alert(FHIRPtionID);
-        
+
         var myObj = {
             "resourceType": "QuestionnaireResponse",
             "status": "completed",
@@ -26,55 +26,55 @@
                 "answer": [{
                     "valueInteger": 0
                 }]
-            },{
+            }, {
                 "linkId": "992",
                 "text": "religion",
                 "answer": [{
                     "valueInteger": 0
                 }]
-            },{
+            }, {
                 "linkId": "993",
                 "text": "education",
                 "answer": [{
                     "valueInteger": 0
                 }]
-            },{
+            }, {
                 "linkId": "994",
                 "text": "work",
                 "answer": [{
                     "valueInteger": 0
                 }]
-            },{
+            }, {
                 "linkId": "995",
                 "text": "dep",
                 "answer": [{
                     "valueInteger": 0
                 }]
-            },{
+            }, {
                 "linkId": "996",
                 "text": "teach",
                 "answer": [{
                     "valueInteger": 0
                 }]
-            },{
+            }, {
                 "linkId": "997",
                 "text": "money",
                 "answer": [{
                     "valueInteger": 0
                 }]
-            },{
+            }, {
                 "linkId": "998",
                 "text": "work3",
                 "answer": [{
                     "valueInteger": 0
                 }]
-            },{
+            }, {
                 "linkId": "999",
                 "text": "study_1",
                 "answer": [{
                     "valueInteger": 0
                 }]
-            },{
+            }, {
                 "linkId": "1",
                 "text": "編號1",
                 "answer": [{
@@ -610,6 +610,42 @@
                 "answer": [{
                     "valueInteger": 0
                 }]
+            }, {
+                "linkId": "96",
+                "text": "工作年資",
+                "answer": [{
+                    "valueInteger": 0
+                }]
+            }, {
+                "linkId": "97",
+                "text": "開始年",
+                "answer": [{
+                    "valueInteger": 0
+                }]
+            }, {
+                "linkId": "98",
+                "text": "開始月",
+                "answer": [{
+                    "valueInteger": 0
+                }]
+            }, {
+                "linkId": "99",
+                "text": "教學年",
+                "answer": [{
+                    "valueInteger": 0
+                }]
+            }, {
+                "linkId": "100",
+                "text": "大夜天",
+                "answer": [{
+                    "valueInteger": 0
+                }]
+            }, {
+                "linkId": "101",
+                "text": "小夜天",
+                "answer": [{
+                    "valueInteger": 0
+                }]
             }]
         };
 
@@ -618,7 +654,9 @@
 
             //第三種寫法 getElementsByTagName
             var count = 0; //計數器
+            var txt_count = 95;
             var Str = "";
+            var txt_Str="";
             var Total_Obj = document.getElementsByTagName("input");
             //alert(Total_Obj.length);
             for (var k = 0; k < Total_Obj.length; k++) {
@@ -634,15 +672,16 @@
                     }
                 }
                 if (Total_Obj[k].type == "text") {//counter 
-                    if (Total_Obj[k].checked) {
-                        Str = Total_Obj[k].value;
-                        if (Str != "") {
-                            //answer[count] = Str;//text;
-                            myObj.item[count].answer[0].valueInteger = Str;
-                            count++;
-                            //alert(Str);
-                        }
+
+                    // txt_Str = parseInt(Total_Obj[k].value);
+                    txt_Str = Total_Obj[k].value;
+                    if (txt_Str != "") {
+                        //answer[count] = Str;//text;
+                        myObj.item[txt_count].answer[0].valueInteger = txt_Str;
+                        txt_count++;
+                        //alert(Str);
                     }
+
                 }
             }
             var jsonStr = JSON.stringify(myObj);
@@ -651,7 +690,7 @@
             var apiURL;
             apiURL = FHIRrootURL + "/QuestionnaireResponse";
             HTTPPostData(apiURL, jsonStr);
-            window.location = "index.html";
+            // window.location = "index.html";
 
         }
 
@@ -791,7 +830,7 @@
 
     <!-- <input id="btnClear" onclick="clearData()" type="button" value="clearData" /> -->
     <!-- <input id="btnGetdata" onclick="getData()" type="button" value="getData" /> -->
-  
+
     <h2>第一部份問卷</h2>
     <p>一，正念量表</p>
     <p>請仔細閱讀後，依照您自己平日的實際情況圈選符合的數字</p>
@@ -3335,7 +3374,7 @@
 
     </table>
     <br />
-    <input id="Button1" onclick="postData()" type="button" value="完成問卷" /><br /><br />
+    <input id="Button1" onclick="postData()" type="button" value="完成問卷" /> <a href="index.html"> 回首頁</a> </br> </br>
 </body>
 
 </html>
